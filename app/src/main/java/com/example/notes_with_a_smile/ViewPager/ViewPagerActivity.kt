@@ -13,21 +13,21 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.example.notes_with_a_smile.Helper.Preferences
 import com.example.notes_with_a_smile.MainActivity
 import com.example.notes_with_a_smile.R
 import kotlinx.android.synthetic.main.activity_view_pager.*
-import java.lang.Exception
 
 
 class ViewPagerActivity : AppCompatActivity() {
     var mediaPlayer: MediaPlayer? = null
     var mediaPlayer2: MediaPlayer? = null
     var mediaPlayer3: MediaPlayer? = null
-
     lateinit var animation: Animation
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_view_pager)
+
         viewPager.adapter = PagerAdapter(supportFragmentManager);
         tabLayout.setupWithViewPager(viewPager, true);
 
@@ -48,6 +48,9 @@ class ViewPagerActivity : AppCompatActivity() {
 
 
         next.setOnClickListener {
+
+            Preferences.getInstance(this)?.saveShown()
+
             mediaPlayer?.stop()
             mediaPlayer3?.stop()
             mediaPlayer2?.stop()
@@ -59,14 +62,19 @@ class ViewPagerActivity : AppCompatActivity() {
 
                 startActivity(Intent(this, MainActivity::class.java))
                 finish()
+
+
             }
         }
 
 
         skip.setOnClickListener {
+            Preferences.getInstance(this)?.saveShown()
+
             mediaPlayer?.stop()
             mediaPlayer3?.stop()
             mediaPlayer2?.stop()
+
             startActivity(Intent(this, MainActivity::class.java))
             finish()
 
