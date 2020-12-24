@@ -8,7 +8,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import java.util.*
 
-abstract class BaseActivity(private var layoutId: Int) : AppCompatActivity() {
+abstract class BaseActivity (private var layoutId: Int) : AppCompatActivity() {
 
 
 
